@@ -40,8 +40,8 @@ const Navbar = () => {
   const alt = theme.palette.background.alt;
 
 //***************** We need to return back this line after connecting to database **************************
-  // const fullName = `${user.firstName} ${user.lastName}`;
-  const fullName = `Fake Name`;
+  const fullName = `${user.firstName} ${user.lastName}`;
+  // const fullName = `Fake Name`;
 //************************************************************************ */
   return (
     <FlexBetween padding="1rem 6%" backgroundColor={alt}>
@@ -53,7 +53,7 @@ const Navbar = () => {
           onClick={() => navigate("/home")}
           sx={{
             "&:hover": {
-              color: primaryLight,
+              // color: primaryLight,
               cursor: "pointer",
             },
           }}
