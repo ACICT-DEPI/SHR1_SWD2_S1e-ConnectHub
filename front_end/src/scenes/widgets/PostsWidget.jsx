@@ -1,24 +1,24 @@
-import { useEffect } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPosts } from 'state';
 import PostWidget from './PostWidget';
 
-const PostsWidget = ({ userId, isProfile = false }) => {
+const PostsWidget = ({ userId }) => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
   const token = useSelector((state) => state.token);
+  const [isProfile, setIsProfile] = useState(false);
 
-  const getPosts = async () => {
+  const getPosts = useCallback(async () => {
     const response = await fetch('http://localhost:3001/posts', {
       method: 'GET',
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await response.json();
-    // console.log(data);
-    dispatch(setPosts({ posts: data.post }));
-  };
+    dispatch(setPosts({ posts: data }));
+  }, [dispatch, token]); // Add token and dispatch to dependencies
 
-  const getUserPosts = async () => {
+  const getUserPosts = useCallback(async () => {
     const response = await fetch(
       `http://localhost:3001/posts/${userId}/posts`,
       {
@@ -27,16 +27,23 @@ const PostsWidget = ({ userId, isProfile = false }) => {
       }
     );
     const data = await response.json();
-    dispatch(setPosts({ posts: data.post }));
-  };
+    dispatch(setPosts({ posts: data }));
+  }, [dispatch, token, userId]); // Add token, dispatch, and userId to dependencies
 
   useEffect(() => {
+    const currentUrl = window.location.href;
+    if (currentUrl === 'http://localhost:3000/profile/' + userId) {
+      setIsProfile(true);
+    } else {
+      setIsProfile(false);
+    }
+
     if (isProfile) {
       getUserPosts();
     } else {
       getPosts();
     }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [isProfile, userId, getPosts, getUserPosts]); // Add getPosts and getUserPosts to dependencies
 
   return (
     <>
