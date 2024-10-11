@@ -28,7 +28,7 @@ const PostsWidget = ({ userId }) => {
     );
     const data = await response.json();
     dispatch(setPosts({ posts: data }));
-  }, [dispatch, token, userId]); // Add token, dispatch, and userId to dependencies
+  }, [dispatch, token, userId]);
 
   useEffect(() => {
     const currentUrl = window.location.href;
@@ -43,7 +43,7 @@ const PostsWidget = ({ userId }) => {
     } else {
       getPosts();
     }
-  }, [isProfile, userId, getPosts, getUserPosts]); // Add getPosts and getUserPosts to dependencies
+  }, [isProfile, userId, getPosts, getUserPosts]);
 
   return (
     <>

@@ -55,7 +55,7 @@ const Navbar = () => {
             },
           }}
         >
-          AKMIpedia
+          ConnectHub 
         </Typography>
         {isNonMobileScreens && (
           <FlexBetween
