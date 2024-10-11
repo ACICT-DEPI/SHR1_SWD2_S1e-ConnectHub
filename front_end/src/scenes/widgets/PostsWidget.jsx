@@ -10,7 +10,7 @@ const PostsWidget = ({ userId }) => {
   const [isProfile, setIsProfile] = useState(false);
 
   const getPosts = useCallback(async () => {
-    const response = await fetch('http://localhost:3001/posts', {
+    const response = await fetch('https://depi-graduate-project-api.vercel.app/posts', {
       method: 'GET',
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -20,7 +20,7 @@ const PostsWidget = ({ userId }) => {
 
   const getUserPosts = useCallback(async () => {
     const response = await fetch(
-      `http://localhost:3001/posts/${userId}/posts`,
+      `https://depi-graduate-project-api.vercel.app/posts/${userId}/posts`,
       {
         method: 'GET',
         headers: { Authorization: `Bearer ${token}` },
