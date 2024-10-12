@@ -10,7 +10,7 @@ const PostsWidget = ({ userId }) => {
   const [isProfile, setIsProfile] = useState(false);
 
   const getPosts = useCallback(async () => {
-    const response = await fetch('https://depi-graduate-project-api.vercel.app/posts', {
+    const response = await fetch('https://depi-graduate-project-back.vercel.app/posts', {
       method: 'GET',
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -20,7 +20,7 @@ const PostsWidget = ({ userId }) => {
 
   const getUserPosts = useCallback(async () => {
     const response = await fetch(
-      `https://depi-graduate-project-api.vercel.app/posts/${userId}/posts`,
+      `https://depi-graduate-project-back.vercel.app/posts/${userId}/posts`,
       {
         method: 'GET',
         headers: { Authorization: `Bearer ${token}` },
@@ -32,7 +32,7 @@ const PostsWidget = ({ userId }) => {
 
   useEffect(() => {
     const currentUrl = window.location.href;
-    if (currentUrl === 'http://localhost:3000/profile/' + userId) {
+    if (currentUrl === 'https://depi-graduate-project-front.vercel.app/profile/' + userId) {
       setIsProfile(true);
     } else {
       setIsProfile(false);
