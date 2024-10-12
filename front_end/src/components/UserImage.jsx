@@ -8,7 +8,7 @@ const UserImage = ({ image, size = '60px' }) => {
         width={size}
         height={size}
         alt="user"
-        src={`https://depi-graduate-project-api.vercel.app/assets/${image}`}
+        src={`https://depi-graduate-project-back.vercel.app/assets/${image}`}
       />
     </Box>
   );
